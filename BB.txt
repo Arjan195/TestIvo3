@@ -1,0 +1,189 @@
+
+NOTES
+In het samenwerken met GIT is er sprake van EENRICHTINGSVERKEER met een heel duidelijk moment waarop je met de COLLABORATEURS moet COMMUNICEREN.
+ 
+NOTES
+FOUNDER & COLLABORATOR duidelijk uitleggen:
+Als je begint met Git Samenwerken is er altijd één FOUNDER die het project start. Alle andere leden van het team noemen we COLLABORATEURS.
+ 
+http://localhost:8888/blackboardmaven/blackboard_images/GIT.Merry.Go.Round.png
+ 
+NOTES
+Bij het werken met Git & GitHub is er altijd een gedeelte ONLINE, en een gedeelte LOKAAL.
+   
+NOTES
+START VAN EEN PROJECT
+ 
+De enige FOUNDER is degene die het project start.
+ 
+De founder maakt daartoe een bestand op zijn lokale machine in een folder. De collaborateurs kunnen op dit moment nog niet meedoen.
+ 
+Binnen die folder maken we een REPOSITORY aan. Deze repository is de MASTER BRANCH.
+ 
+Tijdens het werken worden steeds wijzigingen aangebracht in de files. Deze wijzigingen komen op de STAGING AREA of STAGE te staan.
+ 
+Staging area: Voordat wijzigingen worden vastgelegd in de geschiedenis van het project, moeten ze eerst worden toegevoegd aan het "staging area". Dit is een tussenliggende zone waar je specifieert welke wijzigingen je wilt opnemen in de volgende COMMIT.
+ 
+Van alles wat op de stage staat, maak je COMMITS. Een commit is een permanente snapshot van de huidige toestand van de bestanden in de staging area.
+ 
+NOTES
+Maak online op https://github.com/ een repository aan.
+ 
+Verstrengel de online repository met de lokale repository.
+ 
+Als je dan een commit naar de online repository wilt pushen, vraagt Git aan WELKE repository je de lokale repository wilt pushen. Dat is de MASTER/MAIN, maar dan op ORIGIN (= online).
+ 
+Nadat je dat gedaan hebt (HOE PRECIES?) resulteert dat in de situatie waarbij jouw file (en commits) zich online in de MASTER/MAIN bevinden!
+ 
+NOTES
+GIT is eenrichtingsverkeer: het begint online in de master/main, gaat dan naar de lokale master/main, vervolgens switcht de programmeur lokaal naar zijn eigen branch (en doet daar zijn werk in), voegt zijn werk toe aan zijn staging area, commit het werk, en pushed zijn commit naar de Git online.
+ 
+De ENIGE uitzondering op dit eenrichtingsverkeer is de EERSTE PUSH van de lokale situatie naar de MASTER/MAIN op GitHub.
+Dat proces wordt hieronder stapsgewijs beschreven (zie ook het image http://localhost:8888/blackboardmaven/blackboard_images/GIT.samenwerken.LMS.png dat dit schematisch toont)
+ 
+NOTES
+FOUNDER START EEN GIT PROJECT
+01. Maak een folder
+ 
+02. Zet in die folder een bestand (voor het eerste Git-rondje noem je dat bestand "bestand_<JOUWNAAM>")
+ 
+03. Schrijf iets in dat bestand (gebruik ook je naam)
+ 
+04. Ga met GitBash naar die folder.
+ 
+05. Type "ls" zodat de inhoud van die folder getoond wordt en je jouw zojuist gemaakte bestand ziet.
+ 
+06. Deze folder is NU nog geen repository.
+ 
+07. Type "git init" en git gaat veranderingen in die folder tracken omdat git in die folder geinitialiseerd is: het is nu dus een repository geworden.
+ 
+08. Type "git status" en merk op dat git jouw bestand in het rood toont en erover vermeldt dat jouw bestand UNTRACKED is en dus NIET op de stage staat.
+ 
+09. Type "git add ." om ze toe te voegen aan de stage.
+ 
+10. Type "git status" opnieuw en zie dat jouw bestand nu in het groen wordt getoond en dat het bestand in de "Changes to be committed" opgesomd wordt.
+ 
+11. Type "git push", en git zal antwoorden dat er geen "push destination" bekend is! Dat komt omdat git niet weet met welke repository verbonden (verstrengeld) moet worden. Dat regel je op GitHub.
+ 
+12. Ga dus naar je GitHub account en creeer daar een nieuwe repository. http://localhost:8888/blackboardmaven/blackboard_images/Git.create.new.repository.on.github.png
+ 
+13. GitHub toont vervolgens een nieuwe pagina en kopieer daar de LANGSTE ZIN (git remote add origin <GITHUB_URL>)
+ 
+14. Plak dat commando in GitBash en ENTER
+ 
+15. Type "git status" en zie dat ...
+ 
+16. Type "git commit -am "<JOUW_BERICHT>"
+ 
+17. Type "git push" en git piept weer: "The current branch master has no upstream branch". Met andere woorden: git weet nog niet met WELKE branch je wilt verstrengelen.
+ 
+18. Type "git push --set-upstream origin master" en ENTER
+ 
+19. Nu is de setup van het project compleet. Dat kun je nagaan door op GitHub de pagina te refreshen: je ziet de gepushede data nu online staan!
+ 
+20. Deze EERSTE PUSH van de FOUNDER (van zijn lokale omgeving naar GitHub) is de ENIGE uitzondering op het eenrichtingsverkeer! 
+ 
+In deze stappenlijst zijn we dus uiteindelijk gekomen tot de situatie waarbij de MASTER/MAIN branch op GitHub staat.
+ 
+NOTES
+Nu de master/main branch er is, gaan we met de COLLABORATEURS aan de gang.
+ 
+De collaborateurs hebben lokaal helemaal niks op dit moment. 
+Online is er nu dus wel dat repository met de file(s) die de FOUNDER daar heeft geplaatst (op de MASTER branch).
+ 
+NOTES
+DE EERSTE RONDE - COLLABORATEURS
+ 
+01. Kopieer op GitHub onder de groene Code-knop de GitHub URL
+http://localhost:8888/blackboardmaven/blackboard_images/GIT.collborator.kopieert.url.png
+ 
+02. Plak die in GitBash achter het "git clone" commando. Dus "git clone <REPOSITORY_URL>" en ENTER
+ 
+03. Type "ls" en zie dat je nu lokaal een repository hebt gekregen met de bestanden van de MASTER/MAIN branch zoals die online ook bestaan. (Let er wel op dat je ook de DIRECTORY van git krijgt, dus je zou wel eens een level dieper moeten gaan dan je bedoeling was...)
+ 
+04. JE MOET ECHTER NIET BLIJVEN RONDHANGEN OP DE MASTER want je gaat nu aan het werk met die files in de master/main branch, maar dat doe je in je EIGEN BRANCH!
+ 
+05. Je maakt dus je eigen branch. Dat doe je met "git checkout -b <featureJOUWNAAM> ". De -b betekent dat je naar jouw eigen nieuwe branch gaat.
+ 
+06. Je kunt in de Verkenner/Finder zie dat alles zo is als online (situatie A)
+ 
+07. Maak nu een nieuw bestand in die folder (daarmee wijzigt dus de situatie in JOUW branch ten opzichte van die in de master/main).
+ 
+08. Schrijf je eigen naam in dat nieuwe bestand.
+ 
+09. Type "git status" en zie dat je untracked files hebt (delta). (Logisch, want je maakte dat bestand zojuist aan.)
+ 
+10. "git add ." zorgt ervoor dat git ook jouw bestand gaat tracken.
+ 
+11. "git commit -m "<JOUWTEKST>" " 
+ 
+12. "git status" opnieuw en zie dat je nieuwe bestand meegenomen wordt door git.
+ 
+13. (werken, werken) - en dan wil je jouw werk online zetten:
+ 
+14. "git push" --> nu stuitert git want jij moet nog opgeven met welke branch je wilt verstrengelen. Je krijgt een opmerking van git:
+ 
+fatal: the current branch <featureJOUWNAAM> has no upstream branch
+ 
+15. "git push --set-upstream origin featureJOUWNAAM" (dus de naam van jouw branch)
+ 
+OF
+ 
+"git push -u origin master"
+ 
+16. (Mogelijk loop je ertegen aan de de founder jou nog niet goedgekeurd heeft als collaborateur. Pas DAARNA mag je naar jouw branch pushen in de repository van de founder. De founder kan jou via mail uitnodigen. Accepteer die uitnodiging. Daarna lukt de push wel.)
+ 
+17. "git push -u origin <featureJOUWNAAM>". Nu wordt jouw branch online gezet.
+ 
+18. Check op github dat er nu jouw branch is toegevoegd aan de branches op het github account van de founder.
+ 
+19. (Als je op github jouw branch kiest, zie je JOUW situatie)
+ 
+20. Je hebt de "U" nu afgelegd. Zie http://localhost:8888/blackboardmaven/blackboard_images/GIT.samenwerken.LMS.de.U.png - tijdens de U zit je in je eigen ontwikkelwereld en hoef je NIET met andere collaborateurs te communiceren.
+ 
+NOTES
+Nu gaan we TOEVOEGEN AAN HET TEAM-WORK
+ 
+21. Dat noemen we van de "U" een "O" maken. De laatste pijl die jouw werk aan de master/main branch toevoegt maakt als het ware van de U een O.
+ 
+22. De "O" begint RECHTSBOVEN en gaat via rechtsbeneden naar linksbeneden naar linksboven. De "O" MOET daar beginnen anders maak je een blunder.
+ 
+23. Je moet COMMUNICEREN als je de "O" afmaakt (en weer naar rechtsboven gaat).
+    Zie http://localhost:8888/blackboardmaven/blackboard_images/GIT.samenwerken.LMS.de.O.png voor een schematische weergave van het proces.
+ 
+24. Je (een COLLABORATOR) vermeldt dus aan je team dat je een PULL-REQUEST gaat doen. 
+ 
+25. Na goedkeuring door de teamleden doe je het volgende
+ 
+26. Check eerst of je mogelijk deltas hebt dmv "git status". 
+    Je kunt verder als er geen deltas zijn, anders niet.
+ 
+27. Als er geen deltas zijn doe je "git checkout master" (switch naar de master-branch). 
+    Merk op dat de situatie op jouw lokale machine wijzigt doordat het NU een afspiegeling is van de situatie op de master branch.
+ 
+28. Er bevinden zich nu dus twee "staten" van die map op de computer van de collaborateur (master & featureJOUWNAAM)
+ 
+28a. Met "git pull" trek je de online-master-branch naar jouw (lokale) machine.
+ 
+29. Switch nu naar je eigen branch: "git checkout featureJOUWNAAM"
+ 
+30. Trek nu de wijzigingen van de master naar je toe / merge de situatie van de net ge-pull-de master-branch in jouw eigen branch: "git merge master"
+ 
+31. Doe nu "git push". Daarmee heb je de drie pijlen van de U gedaan in alle ronden die op de eerste volgen. 
+ 
+32. Je hebt nu de laatste gegevens online gezet. Ga nu naar GitHub om een PULL-REQUEST te maken. 
+    http://localhost:8888/blackboardmaven/blackboard_images/pull.request.png
+ 
+33. Klik "Merge pull request", weet je het zeker?, klik "Confirm merge" --> NU ZIJN JOUW WIJZIGINGEN OOK OP DE MASTER!
+ 
+34. Klik op het tabblad "Code" op github, selecteer de master-branch en zie dat jouw bestand is toegevoegd aan de master!
+ 
+NOTES
+DE TWEEDE RONDE (en derde, vierde enz)
+ 
+35. http://localhost:8888/blackboardmaven/blackboard_images/GIT.samenwerken.LMS.Volgende.Ronden.png
+ 
+N.B: Denk niet dat de MASTER/MAIN branch van de FOUNDER is want dat is niet zo!
+ 
+N.B.B: DENK NIET dat je de "git pull / git merge/ git push" NIET hoeft uit te voeren omdat je denkt dat je toch  DE LAATSTE TOEVOEGING DEED. 
+ 
